@@ -49,59 +49,56 @@ export default function LoansPage() {
   return (
     <div className="space-y-6 animate-in fade-in duration-300">
       {/* 4 Summary Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-        {mockLoansSummary.map((item, idx) => (
-          <div
-            key={idx}
-            className="bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-100 dark:border-slate-800 shadow-xs flex items-center space-x-4"
-          >
-            <div className={`w-13 h-13 rounded-full ${item.bgColor} flex items-center justify-center shrink-0`}>
-              <img src={item.icon} alt={item.title} className="w-6 h-6 object-contain" />
+      <div className="space-y-4 min-w-0">
+        <div className="flex overflow-x-auto gap-4 snap-x pb-2 scrollbar-none sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:gap-5 sm:overflow-visible">
+          {mockLoansSummary.map((item, idx) => (
+            <div
+              key={idx}
+              className="w-[220px] sm:w-auto shrink-0 snap-start bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-100 dark:border-slate-800 shadow-xs flex items-center space-x-4"
+            >
+              <div className={`w-13 h-13 rounded-full ${item.bgColor} flex items-center justify-center shrink-0`}>
+                <img src={item.icon} alt={item.title} className="w-6 h-6 object-contain" />
+              </div>
+              <div>
+                <p className="text-xs font-medium text-[#718EBF] dark:text-slate-400">{item.title}</p>
+                <h3 className="text-base sm:text-lg font-bold text-[#232323] dark:text-slate-100 mt-0.5">{item.amount}</h3>
+              </div>
             </div>
-            <div>
-              <p className="text-xs font-medium text-[#718EBF] dark:text-slate-400">{item.title}</p>
-              <h3 className="text-lg font-bold text-[#232323] dark:text-slate-100 mt-0.5">{item.amount}</h3>
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
 
       {/* Active Loans Overview Table */}
       <div className="space-y-4">
         <h2 className="text-lg font-bold text-[#343C6A] dark:text-slate-100">Active Loans Overview</h2>
 
-        <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-xs overflow-hidden p-4 sm:p-6">
-          <div className="overflow-x-auto">
-            <table className="w-full text-left border-collapse">
+        <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-xs overflow-hidden p-3.5 sm:p-6">
+          <div className="overflow-x-auto scrollbar-none">
+            <table className="w-full text-left border-collapse min-w-full">
               <thead>
                 <tr className="border-b border-[#EDF2F7] dark:border-slate-800 text-[#718EBF] dark:text-slate-400 text-xs font-semibold">
-                  <th className="py-3 px-4">SL No</th>
-                  <th className="py-3 px-4">Loan Money</th>
-                  <th className="py-3 px-4">Left to repay</th>
-                  <th className="py-3 px-4">Duration</th>
-                  <th className="py-3 px-4">Interest rate</th>
-                  <th className="py-3 px-4">Installment</th>
-                  <th className="py-3 px-4 text-center">Repay</th>
+                  <th className="py-3 px-2 sm:px-4 hidden sm:table-cell">SL No</th>
+                  <th className="py-3 px-1.5 sm:px-4">Loan Money</th>
+                  <th className="py-3 px-1.5 sm:px-4">Left to repay</th>
+                  <th className="py-3 px-2 sm:px-4 hidden md:table-cell">Duration</th>
+                  <th className="py-3 px-2 sm:px-4 hidden lg:table-cell">Interest rate</th>
+                  <th className="py-3 px-2 sm:px-4 hidden lg:table-cell">Installment</th>
+                  <th className="py-3 px-1.5 sm:px-4 text-center">Repay</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-[#F4F5F7] dark:divide-slate-800/60 text-sm text-[#232323] dark:text-slate-200">
+              <tbody className="divide-y divide-[#F4F5F7] dark:divide-slate-800/60 text-xs sm:text-sm text-[#232323] dark:text-slate-200">
                 {loans.map((loan) => (
                   <tr key={loan.id} className="hover:bg-slate-50/60 dark:hover:bg-slate-800/30 transition-colors">
-                    <td className="py-4 px-4 text-[#718EBF] font-medium text-xs sm:text-sm">{loan.slNo}</td>
-                    <td className="py-4 px-4 font-semibold text-[#232323] dark:text-slate-100">{loan.loanMoney}</td>
-                    <td className="py-4 px-4 text-[#232323] dark:text-slate-200">{loan.leftToRepay}</td>
-                    <td className="py-4 px-4 text-[#232323] dark:text-slate-200">{loan.duration}</td>
-                    <td className="py-4 px-4 text-[#232323] dark:text-slate-200">{loan.interestRate}</td>
-                    <td className="py-4 px-4 text-[#232323] dark:text-slate-200">{loan.installment}</td>
-                    <td className="py-4 px-4 text-center">
+                    <td className="py-3.5 px-2 sm:px-4 text-[#718EBF] font-medium hidden sm:table-cell">{loan.slNo}</td>
+                    <td className="py-3.5 px-1.5 sm:px-4 font-semibold text-[#232323] dark:text-slate-100 whitespace-nowrap">{loan.loanMoney}</td>
+                    <td className="py-3.5 px-1.5 sm:px-4 text-[#232323] dark:text-slate-200 whitespace-nowrap">{loan.leftToRepay}</td>
+                    <td className="py-3.5 px-2 sm:px-4 text-[#232323] dark:text-slate-200 hidden md:table-cell">{loan.duration}</td>
+                    <td className="py-3.5 px-2 sm:px-4 text-[#232323] dark:text-slate-200 hidden lg:table-cell">{loan.interestRate}</td>
+                    <td className="py-3.5 px-2 sm:px-4 text-[#232323] dark:text-slate-200 hidden lg:table-cell">{loan.installment}</td>
+                    <td className="py-3.5 px-1.5 sm:px-4 text-center">
                       <button
                         onClick={() => handlePayInstallment(loan.id)}
-                        onBlur={() => setSelectedLoanId(null)}
-                        className={`repay-btn px-5 py-1 rounded-full border text-xs font-medium transition-all duration-200 active:scale-95 focus:outline-none ${
-                          selectedLoanId === loan.id
-                            ? 'border-[#00A389] text-[#00A389] bg-transparent font-semibold ring-1 ring-[#00A389]'
-                            : 'border-[#232323] text-[#232323] dark:border-slate-600 dark:text-slate-300 hover:border-[#00A389] hover:text-[#00A389]'
-                        }`}
+                        className="repay-btn px-3.5 py-1 rounded-full border border-[#00A389] dark:border-[#16DBCC] text-[#00A389] dark:text-[#16DBCC] text-xs font-semibold hover:bg-teal-50 dark:hover:bg-teal-950/40 transition-colors active:scale-95 whitespace-nowrap"
                       >
                         Repay
                       </button>
@@ -110,14 +107,17 @@ export default function LoansPage() {
                 ))}
               </tbody>
               <tfoot>
-                <tr className="border-t border-[#EDF2F7] dark:border-slate-800 font-semibold text-[#FF4B4A]">
-                  <td className="py-4 px-4">Total</td>
-                  <td className="py-4 px-4">$125,0000</td>
-                  <td className="py-4 px-4">$750,000</td>
-                  <td className="py-4 px-4"></td>
-                  <td className="py-4 px-4"></td>
-                  <td className="py-4 px-4">$50,000 / month</td>
-                  <td className="py-4 px-4"></td>
+                <tr className="border-t border-[#EDF2F7] dark:border-slate-800 font-semibold text-[#FF4B4A] text-xs sm:text-sm">
+                  <td className="py-3.5 px-2 sm:px-4 hidden sm:table-cell">Total</td>
+                  <td className="py-3.5 px-1.5 sm:px-4 whitespace-nowrap">
+                    <span className="block text-xs font-normal text-[#FF4B4A] mb-0.5 sm:hidden">Total</span>
+                    <span className="font-bold text-xs sm:text-sm">$125,0000</span>
+                  </td>
+                  <td className="py-3.5 px-1.5 sm:px-4 font-bold whitespace-nowrap align-bottom">$750,000</td>
+                  <td className="py-3.5 px-2 sm:px-4 hidden md:table-cell"></td>
+                  <td className="py-3.5 px-2 sm:px-4 hidden lg:table-cell"></td>
+                  <td className="py-3.5 px-2 sm:px-4 hidden lg:table-cell">$50,000 / month</td>
+                  <td className="py-3.5 px-1.5 sm:px-4"></td>
                 </tr>
               </tfoot>
             </table>

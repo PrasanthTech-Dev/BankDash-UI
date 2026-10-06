@@ -136,28 +136,31 @@ export default function InvestmentsPage() {
             {mockMyInvestmentsList.map((inv) => (
               <div
                 key={inv.id}
-                className="bg-white dark:bg-slate-900 rounded-2xl p-4 sm:p-5 border border-slate-100 dark:border-slate-800 shadow-sm grid grid-cols-12 items-center gap-2 sm:gap-4 transition-all hover:shadow-md"
+                className="bg-white dark:bg-slate-900 rounded-2xl p-4 sm:p-5 border border-slate-100 dark:border-slate-800 shadow-sm flex items-center justify-between gap-3 transition-all hover:shadow-md"
               >
-                <div className="col-span-5 flex items-center space-x-3 sm:space-x-4 min-w-0">
-                  <div className={`w-12 h-12 rounded-2xl ${inv.bgColor} flex items-center justify-center shrink-0`}>
-                    <img src={inv.icon} alt={inv.name} className="w-6 h-6 object-contain" />
+                {/* Left side: Icon + Name + Category */}
+                <div className="flex items-center space-x-3.5 sm:space-x-4 min-w-0 flex-1">
+                  <div className={`w-12 h-12 sm:w-14 sm:h-14 rounded-2xl ${inv.bgColor} flex items-center justify-center shrink-0`}>
+                    <img src={inv.icon} alt={inv.name} className="w-6 h-6 sm:w-7 sm:h-7 object-contain" />
                   </div>
                   <div className="min-w-0">
-                    <h4 className="font-bold text-slate-800 dark:text-slate-100 text-sm sm:text-base truncate">{inv.name}</h4>
-                    <p className="text-xs text-slate-400 mt-0.5 truncate">{inv.category}</p>
+                    <h4 className="font-bold text-[#232323] dark:text-slate-100 text-sm sm:text-base">{inv.name}</h4>
+                    <p className="text-xs font-normal text-[#718EBF] dark:text-slate-400 mt-0.5">{inv.category}</p>
                   </div>
                 </div>
 
-                <div className="col-span-4 text-left pl-2">
-                  <h4 className="font-bold text-slate-800 dark:text-slate-100 text-sm sm:text-base">{inv.value}</h4>
-                  <p className="text-xs text-slate-400 mt-0.5">{inv.valueLabel}</p>
+                {/* Middle: Investment Value (Desktop/Tablet) */}
+                <div className="hidden sm:block text-left pr-4">
+                  <h4 className="font-bold text-[#232323] dark:text-slate-100 text-sm sm:text-base">{inv.value}</h4>
+                  <p className="text-xs text-[#718EBF] dark:text-slate-400 mt-0.5">{inv.valueLabel}</p>
                 </div>
 
-                <div className="col-span-3 text-right">
-                  <h4 className={`font-bold text-sm sm:text-base ${inv.returnType === 'positive' ? 'text-emerald-500' : 'text-rose-500'}`}>
+                {/* Right side: Return Percentage */}
+                <div className="shrink-0 text-right">
+                  <h4 className={`font-bold text-sm sm:text-base ${inv.returnType === 'positive' ? 'text-[#10B981]' : 'text-[#FF4B4A]'}`}>
                     {inv.returnRate}
                   </h4>
-                  <p className="text-xs text-slate-400 mt-0.5">{inv.returnLabel}</p>
+                  <p className="text-xs text-[#718EBF] dark:text-slate-400 mt-0.5 hidden sm:block">{inv.returnLabel}</p>
                 </div>
               </div>
             ))}

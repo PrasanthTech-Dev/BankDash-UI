@@ -68,7 +68,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F4F5F7] dark:bg-[#0B132B] text-slate-800 dark:text-slate-100 flex transition-colors duration-200 font-sans">
+    <div className="h-screen w-screen bg-[#F4F5F7] dark:bg-[#0B132B] text-slate-800 dark:text-slate-100 flex transition-colors duration-200 font-sans overflow-hidden">
       {/* Sidebar navigation */}
       <Sidebar
         activeTab={activeTab}
@@ -78,7 +78,7 @@ export default function App() {
       />
 
       {/* Main Content Area */}
-      <div className="flex-1 flex flex-col min-w-0 lg:pl-64 transition-all duration-300">
+      <div className="flex-1 flex flex-col h-full min-w-0 lg:pl-64 transition-all duration-300 overflow-hidden">
         {/* Header navigation bar */}
         <Header
           activeTab={activeTab}
@@ -90,8 +90,8 @@ export default function App() {
           setSearchQuery={setSearchQuery}
         />
 
-        {/* Page Content Container */}
-        <main className="flex-1 p-4 sm:p-6 md:p-8 max-w-7xl w-full mx-auto">
+        {/* Page Content Container (Slide/Content Section) */}
+        <main className="flex-1 p-4 sm:p-6 md:p-8 max-w-7xl w-full mx-auto overflow-y-auto overflow-x-auto">
           {renderActivePage()}
         </main>
       </div>

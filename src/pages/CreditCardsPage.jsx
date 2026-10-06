@@ -26,15 +26,16 @@ export default function CreditCardsPage({ onOpenAddCard }) {
   return (
     <div className="space-y-8 animate-in fade-in duration-300">
       {/* 1. My Cards Section */}
-      <div className="space-y-4">
+      <div className="space-y-4 min-w-0">
         <h2 className="text-lg font-bold text-[#343C6A] dark:text-slate-100">My Cards</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="flex overflow-x-auto gap-4 snap-x pb-2 scrollbar-none md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-6 md:overflow-visible">
           {cardsList.map((card, idx) => (
-            <CreditCard
-              key={card.id}
-              card={card}
-              styleType={idx === 0 ? 'primary' : idx === 1 ? 'accent' : 'secondary'}
-            />
+            <div key={card.id} className="w-[285px] md:w-auto shrink-0 snap-start">
+              <CreditCard
+                card={card}
+                styleType={idx === 0 ? 'primary' : idx === 1 ? 'accent' : 'secondary'}
+              />
+            </div>
           ))}
         </div>
       </div>
@@ -122,42 +123,43 @@ export default function CreditCardsPage({ onOpenAddCard }) {
             {mockCardListItems.map((item) => (
               <div
                 key={item.id}
-                className="bg-white dark:bg-slate-900 rounded-[25px] px-6 py-4.5 border border-[#DFEAF2] dark:border-slate-800 shadow-xs grid grid-cols-12 items-center gap-2 transition-all hover:shadow-sm h-[90px]"
+                className="bg-white dark:bg-slate-900 rounded-[25px] px-4 sm:px-6 py-4 border border-[#DFEAF2] dark:border-slate-800 shadow-xs flex items-center justify-between gap-2 sm:gap-4 transition-all hover:shadow-sm"
               >
-                {/* 1. Icon Container (Col 1) */}
-                <div className="col-span-2 lg:col-span-1 flex items-center justify-start">
-                  <div className={`w-14 h-14 rounded-[20px] ${item.bgColor} flex items-center justify-center shrink-0`}>
-                    <img src={item.icon} alt={item.bank} className="w-6.5 h-6.5 object-contain" />
+                {/* Left side: Icon + Card Type + Bank + (Desktop cols) */}
+                <div className="flex items-center space-x-3 sm:space-x-8 min-w-0 flex-1">
+                  {/* Icon */}
+                  <div className={`w-12 h-12 sm:w-14 sm:h-14 rounded-[18px] sm:rounded-[20px] ${item.bgColor} flex items-center justify-center shrink-0`}>
+                    <img src={item.icon} alt={item.bank} className="w-5 h-5 sm:w-6.5 sm:h-6.5 object-contain" />
+                  </div>
+
+                  {/* Card Type */}
+                  <div className="shrink-0 min-w-[70px] sm:min-w-[90px]">
+                    <h4 className="font-bold text-[#232323] dark:text-slate-100 text-xs sm:text-sm">Card Type</h4>
+                    <p className="text-xs sm:text-sm font-medium text-[#718EBF] dark:text-slate-400 mt-0.5">{item.cardType}</p>
+                  </div>
+
+                  {/* Bank (Visible on mobile matching reference image) */}
+                  <div className="shrink-0 min-w-[70px] sm:min-w-[90px]">
+                    <h4 className="font-bold text-[#232323] dark:text-slate-100 text-xs sm:text-sm">Bank</h4>
+                    <p className="text-xs sm:text-sm font-medium text-[#718EBF] dark:text-slate-400 mt-0.5">{item.bank}</p>
+                  </div>
+
+                  {/* Card Number (Desktop/Tablet) */}
+                  <div className="hidden md:block shrink-0">
+                    <h4 className="font-bold text-[#232323] dark:text-slate-100 text-sm">Card Number</h4>
+                    <p className="text-sm font-medium text-[#718EBF] dark:text-slate-400 mt-0.5 font-mono">{item.cardNumber}</p>
+                  </div>
+
+                  {/* Namain Card (Desktop) */}
+                  <div className="hidden lg:block shrink-0">
+                    <h4 className="font-bold text-[#232323] dark:text-slate-100 text-sm">Namain Card</h4>
+                    <p className="text-sm font-medium text-[#718EBF] dark:text-slate-400 mt-0.5">{item.nameInCard}</p>
                   </div>
                 </div>
 
-                {/* 2. Card Type (Col 2) */}
-                <div className="col-span-2 sm:col-span-2 pl-2 sm:pl-3">
-                  <h4 className="font-bold text-[#232323] dark:text-slate-100 text-sm">Card Type</h4>
-                  <p className="text-sm font-medium text-[#718EBF] dark:text-slate-400 mt-0.5">{item.cardType}</p>
-                </div>
-
-                {/* 3. Bank (Col 2) */}
-                <div className="col-span-2 sm:col-span-2">
-                  <h4 className="font-bold text-[#232323] dark:text-slate-100 text-sm">Bank</h4>
-                  <p className="text-sm font-medium text-[#718EBF] dark:text-slate-400 mt-0.5">{item.bank}</p>
-                </div>
-
-                {/* 4. Card Number (Col 3) */}
-                <div className="col-span-3 sm:col-span-3">
-                  <h4 className="font-bold text-[#232323] dark:text-slate-100 text-sm whitespace-nowrap">Card Number</h4>
-                  <p className="text-sm font-medium text-[#718EBF] dark:text-slate-400 mt-0.5 font-mono whitespace-nowrap">{item.cardNumber}</p>
-                </div>
-
-                {/* 5. Namain Card (Col 2) */}
-                <div className="col-span-2 sm:col-span-2">
-                  <h4 className="font-bold text-[#232323] dark:text-slate-100 text-sm">Namain Card</h4>
-                  <p className="text-sm font-medium text-[#718EBF] dark:text-slate-400 mt-0.5">{item.nameInCard}</p>
-                </div>
-
-                {/* 6. View Details Action (Col 2, Right Aligned) */}
-                <div className="col-span-1 sm:col-span-2 text-right">
-                  <button className="text-sm font-semibold text-[#00A389] dark:text-[#16DBCC] hover:text-[#008771] dark:hover:text-teal-300 hover:underline whitespace-nowrap">
+                {/* Right side: View Details Action */}
+                <div className="shrink-0 pl-1">
+                  <button className="text-xs sm:text-sm font-semibold text-[#00A389] dark:text-[#16DBCC] hover:text-[#008771] dark:hover:text-teal-300 hover:underline whitespace-nowrap">
                     View Details
                   </button>
                 </div>

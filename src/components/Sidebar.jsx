@@ -40,7 +40,7 @@ export default function Sidebar({ activeTab, setActiveTab, isOpen, setIsOpen }) 
         className={`fixed top-0 left-0 bottom-0 z-50 w-64 bg-white dark:bg-slate-900 border-r border-slate-200/80 dark:border-slate-800 transition-transform duration-300 ease-in-out flex flex-col justify-between ${isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
           }`}
       >
-        <div>
+        <div className="flex flex-col h-full overflow-y-auto">
           {/* Brand Logo Header */}
           <div className="h-20 flex items-center justify-between px-6 border-b border-slate-100 dark:border-slate-800/60">
             <div className="flex items-center space-x-3 cursor-pointer" onClick={() => setActiveTab('dashboard')}>

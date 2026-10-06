@@ -105,16 +105,20 @@ export default function TransactionsPage({ onOpenAddCard, searchQuery }) {
             </button>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-            <CreditCard card={mockCards[0]} styleType="primary" />
-            <CreditCard
-              card={{
-                ...mockCards[1],
-                chip: assetImages.chipCardDarkImg,
-                logo: assetImages.mastercardLightLogo
-              }}
-              styleType="secondary"
-            />
+          <div className="flex overflow-x-auto gap-4 snap-x pb-2 scrollbar-none sm:grid sm:grid-cols-2 sm:gap-5 sm:overflow-visible">
+            <div className="w-[285px] sm:w-auto shrink-0 snap-start">
+              <CreditCard card={mockCards[0]} styleType="primary" />
+            </div>
+            <div className="w-[285px] sm:w-auto shrink-0 snap-start">
+              <CreditCard
+                card={{
+                  ...mockCards[1],
+                  chip: assetImages.chipCardDarkImg,
+                  logo: assetImages.mastercardLightLogo
+                }}
+                styleType="secondary"
+              />
+            </div>
           </div>
         </div>
 
@@ -182,8 +186,33 @@ export default function TransactionsPage({ onOpenAddCard, searchQuery }) {
         </div>
 
         {/* Table Card */}
-        <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-sm overflow-hidden">
-          <div className="overflow-x-auto">
+        <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-sm overflow-hidden p-4 sm:p-0">
+          {/* Mobile Item List View matching reference image */}
+          <div className="block sm:hidden space-y-4">
+            {filteredTransactions.map((tx) => (
+              <div key={tx.id} className="flex items-center justify-between py-2 border-b border-slate-100 dark:border-slate-800/60 last:border-0">
+                <div className="flex items-center space-x-3.5">
+                  <div className="w-11 h-11 rounded-full border border-slate-200 dark:border-slate-700 flex items-center justify-center text-[#718EBF] shrink-0">
+                    {tx.rawAmount < 0 ? (
+                      <ArrowUpCircle className="w-6 h-6 stroke-[1.5]" />
+                    ) : (
+                      <ArrowDownCircle className="w-6 h-6 stroke-[1.5]" />
+                    )}
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-slate-800 dark:text-slate-100 text-sm">{tx.title}</h4>
+                    <p className="text-xs text-[#718EBF] mt-0.5">{tx.date}</p>
+                  </div>
+                </div>
+                <span className={`font-bold text-sm ${tx.rawAmount < 0 ? 'text-[#FF4B4A]' : 'text-[#41D4A8]'}`}>
+                  {tx.amount}
+                </span>
+              </div>
+            ))}
+          </div>
+
+          {/* Desktop Table View */}
+          <div className="hidden sm:block overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>
                 <tr className="border-b border-slate-100 dark:border-slate-800 text-[#718EBF] text-sm font-medium">

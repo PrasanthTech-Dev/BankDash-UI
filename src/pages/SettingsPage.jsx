@@ -229,7 +229,7 @@ export default function SettingsPage() {
               )}
               <button
                 type="submit"
-                className="w-full sm:w-auto px-12 py-3 rounded-2xl bg-[#00A389] hover:bg-teal-700 text-white font-semibold text-sm shadow-md shadow-teal-600/20 transition-all"
+                className="w-full sm:w-auto px-12 py-3.5 rounded-2xl bg-[#00A389] hover:bg-[#008771] dark:bg-[#16DBCC] dark:hover:bg-teal-400 text-white dark:text-slate-900 font-bold text-sm shadow-md shadow-[#00A389]/25 transition-all active:scale-98"
               >
                 Save
               </button>
@@ -342,7 +342,7 @@ export default function SettingsPage() {
             )}
             <button
               type="submit"
-              className="w-full sm:w-auto px-12 py-3 rounded-2xl bg-[#00A389] hover:bg-teal-700 text-white font-semibold text-sm shadow-md shadow-teal-600/20 transition-all"
+              className="w-full sm:w-auto px-12 py-3.5 rounded-2xl bg-[#00A389] hover:bg-[#008771] dark:bg-[#16DBCC] dark:hover:bg-teal-400 text-white dark:text-slate-900 font-bold text-sm shadow-md shadow-[#00A389]/25 transition-all active:scale-98"
             >
               Save
             </button>
@@ -419,7 +419,7 @@ export default function SettingsPage() {
             )}
             <button
               type="submit"
-              className="w-full sm:w-auto px-12 py-3 rounded-2xl bg-[#00A389] hover:bg-teal-700 text-white font-semibold text-sm shadow-md shadow-teal-600/20 transition-all"
+              className="w-full sm:w-auto px-12 py-3.5 rounded-2xl bg-[#00A389] hover:bg-[#008771] dark:bg-[#16DBCC] dark:hover:bg-teal-400 text-white dark:text-slate-900 font-bold text-sm shadow-md shadow-[#00A389]/25 transition-all active:scale-98"
             >
               Save
             </button>

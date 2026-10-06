@@ -60,22 +60,24 @@ export default function AccountsPage({ setActiveTab }) {
           <div className="flex items-center justify-between">
             <h2 className="text-2xl font-bold text-[#343C6A] dark:text-slate-100">Last Transaction</h2>
           </div>
-          <div className="bg-white dark:bg-slate-900 rounded-[25px] p-5 border border-[#DFEAF2] dark:border-slate-800 shadow-xs h-[235px] flex flex-col justify-between">
+          <div className="bg-white dark:bg-slate-900 rounded-[25px] p-4 sm:p-6 border border-[#DFEAF2] dark:border-slate-800 shadow-xs flex flex-col justify-between gap-4">
             {lastTransactions.map((tx) => (
-              <div key={tx.id} className="flex items-center justify-between">
-                <div className="flex items-center space-x-3.5 min-w-[210px]">
-                  <div className={`w-12 h-12 rounded-full flex items-center justify-center shrink-0 ${tx.bg}`}>
+              <div key={tx.id} className="flex items-center justify-between gap-2">
+                {/* Left: Icon + Title + Date */}
+                <div className="flex items-center space-x-3.5 min-w-0 flex-1">
+                  <div className={`w-12 h-12 rounded-[16px] flex items-center justify-center shrink-0 ${tx.bg}`}>
                     <img src={tx.icon} alt={tx.title} className="w-6 h-6 object-contain" />
                   </div>
-                  <div>
-                    <h4 className="text-base font-bold text-[#232323] dark:text-slate-100">{tx.title}</h4>
-                    <p className="text-xs font-normal text-[#718EBF] mt-0.5">{tx.date}</p>
+                  <div className="min-w-0">
+                    <h4 className="text-sm sm:text-base font-bold text-[#232323] dark:text-slate-100 truncate">{tx.title}</h4>
+                    <p className="text-xs font-normal text-[#718EBF] dark:text-slate-400 mt-0.5">{tx.date}</p>
                   </div>
                 </div>
 
+                {/* Desktop/Tablet Columns */}
                 <span className="text-sm font-normal text-[#718EBF] dark:text-slate-400 hidden sm:inline-block w-24">{tx.category}</span>
                 <span className="text-sm font-normal text-[#718EBF] dark:text-slate-400 hidden md:inline-block w-24">{tx.card}</span>
-                <span className={`text-xs px-4 py-1.5 rounded-full font-semibold ${
+                <span className={`text-xs px-3.5 py-1 rounded-full font-semibold hidden sm:inline-flex items-center justify-center ${
                   tx.status === 'Completed'
                     ? 'bg-[#DCFAF8] text-[#16DBCC]'
                     : 'bg-[#FFF5D9] text-[#FFBB38]'
@@ -83,7 +85,8 @@ export default function AccountsPage({ setActiveTab }) {
                   {tx.status}
                 </span>
 
-                <span className={`text-base font-bold min-w-[70px] text-right ${tx.isPositive ? 'text-[#41D4A8]' : 'text-[#FF4B4A]'}`}>
+                {/* Right: Amount (Always visible, unclipped) */}
+                <span className={`text-sm sm:text-base font-bold shrink-0 text-right ${tx.isPositive ? 'text-[#41D4A8]' : 'text-[#FF4B4A]'}`}>
                   {tx.amount}
                 </span>
               </div>

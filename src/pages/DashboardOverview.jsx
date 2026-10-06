@@ -60,7 +60,7 @@ export default function DashboardOverview({ setActiveTab, onOpenAddCard }) {
       {/* Top Grid: My Cards & Recent Transactions */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* My Cards (Cols 8) */}
-        <div className="lg:col-span-8 space-y-4">
+        <div className="lg:col-span-8 space-y-4 min-w-0">
           <div className="flex items-center justify-between">
             <h2 className="text-2xl font-bold text-[#343C6A] dark:text-slate-100">My Cards</h2>
             <button
@@ -71,16 +71,20 @@ export default function DashboardOverview({ setActiveTab, onOpenAddCard }) {
             </button>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-            <CreditCard card={mockCards[0]} styleType="primary" />
-            <CreditCard
-              card={{
-                ...mockCards[1],
-                chip: assetImages.chipCardDarkImg,
-                logo: assetImages.mastercardLightLogo
-              }}
-              styleType="secondary"
-            />
+          <div className="flex overflow-x-auto gap-4 snap-x pb-2 scrollbar-none sm:grid sm:grid-cols-2 sm:gap-5 sm:overflow-visible">
+            <div className="w-[285px] sm:w-auto shrink-0 snap-start">
+              <CreditCard card={mockCards[0]} styleType="primary" />
+            </div>
+            <div className="w-[285px] sm:w-auto shrink-0 snap-start">
+              <CreditCard
+                card={{
+                  ...mockCards[1],
+                  chip: assetImages.chipCardDarkImg,
+                  logo: assetImages.mastercardLightLogo
+                }}
+                styleType="secondary"
+              />
+            </div>
           </div>
         </div>
 

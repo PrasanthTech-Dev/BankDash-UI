@@ -43,7 +43,7 @@ export default function Header({
   const unreadCount = mockNotifications.filter(n => !n.read).length;
 
   return (
-    <header className="sticky top-0 z-30 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800 px-4 sm:px-6 md:px-8 py-3 md:py-0 md:h-20 flex flex-col justify-center transition-colors">
+    <header className="shrink-0 sticky top-0 z-30 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800 px-4 sm:px-6 md:px-8 py-3 md:py-0 md:h-20 flex flex-col justify-center transition-colors">
       {/* Top Header Row */}
       <div className="relative flex items-center justify-between w-full">
         {/* Left side: Hamburger (Mobile) */}
